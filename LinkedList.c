@@ -46,7 +46,8 @@ void removeElement (linkedlist* list, size_t index){
            return "empty";
         }
         free(list->head);
-        list->head = next;  
+        list->head = next; 
+        return list->head->data; 
    }
 
    for(i=0; i < index-1; i++){
