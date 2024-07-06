@@ -10,23 +10,22 @@ typedef struct node {
 typedef struct linkedlist {
     node* head; 
     size_t size; 
-    void (*copy_data)(void *dest, void *src); //copying data from src location to destination
-    void (*free_data)(void *data); // freeing space in memory 
+    //void (*copy_data)(void *dest, void *src); //copying data from src location to destination
+    //void (*free_data)(void *data); // freeing space in memory 
 }linkedlist;
 
-void initialize_linked_list(linkedlist* list, size_t size, void (*copy_data)(void *dest, void *src),
-    void (*free_data)(void *data)){
-       list->head = NULL;
+void initialize_linked_list(linkedlist* list, size_t size){
+       list->head = (node*)malloc(sizeof(node));
        list->size = 0; 
-       list->copy_data = copy_data; 
-       list->free_data = free_data;  
+       //list->copy_data = copy_data; 
+       //list->free_data = free_data;  
 }
 
 void addElement(linkedlist* list, void* data){ 
     node* newnode = (node*)malloc(sizeof(node)); // node you want to add 
     node* cur = list->head; 
     newnode->data = malloc(sizeof(data)); // making space for the data in the node 
-    while(cur != NULL){ 
+    while(cur->next != NULL){ 
         cur = cur->next; 
     } // until list->head is the last element 
 
@@ -35,7 +34,7 @@ void addElement(linkedlist* list, void* data){
     cur->next->next = NULL; //resetting last element to NULL 
 }
 
-void removeElement (linkedlist* list, size_t index){ 
+void* removeElement (linkedlist* list, size_t index){ 
    int i = 0; 
    node* cur = list->head; 
    node* temp = NULL; 
@@ -43,11 +42,14 @@ void removeElement (linkedlist* list, size_t index){
 
    if (index == 0) { 
         if(list->head == NULL){
-           return "empty";
+           printf ("empty");
+           return NULL;
         }
-        free(list->head);
+        void* tempdata = list->head->data;
+        temp = list->head; 
+        free(temp);
         list->head = next; 
-        return list->head->data; 
+        return tempdata; 
    }
 
    for(i=0; i < index-1; i++){
@@ -68,7 +70,7 @@ void removeElement (linkedlist* list, size_t index){
    return "removed";
 }
 
-void accessElement (linkedlist* list, size_t index){
+void* accessElement (linkedlist* list, size_t index){
     node* cur = list->head; 
     int i = 0; 
     if (index >= list->size){ 
