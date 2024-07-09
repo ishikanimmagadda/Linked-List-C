@@ -25,7 +25,6 @@ void addElement(linkedlist* list, void* value){
     }
 
     newnode->data = value; 
-    newnode->next = NULL; 
 
     if (list->head == NULL) {
         list->head = newnode;
