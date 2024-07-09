@@ -57,9 +57,9 @@ void* removeElement(linkedlist* list, size_t index){
     } else {
         node* cur = list->head; 
         for(int i=0; i < index-1; i++){ // all the way until one before the index node 
-            cur = cur->next; // cur is now the node you want to remove 
+            cur = cur->next; 
         }
-        temp = cur->next; 
+        temp = cur->next; // temp is the node you want to remove 
         tempdata = temp->data; 
         cur->next = temp->next; 
         free(temp); 
