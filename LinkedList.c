@@ -123,12 +123,4 @@ int main() {
     if (accessedData != NULL) {
         printf("Accessed element at index 1: %d\n", *(int*)accessedData);
     }
-
-    // Freeing memory
-    while (list.head != NULL) {
-        void* data = removeElement(&list, 0);
-        if (data != NULL) {
-        }
-    }
-    return 0;
 }
