@@ -100,7 +100,7 @@ int main() {
     int c = 15;
     int d = 20;
 
-    addElement(&list, &a); // taking in addresses 
+    addElement(&list, &a);
     addElement(&list, &b);
     addElement(&list, &c);
     addElement(&list, &d);
