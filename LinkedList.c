@@ -85,7 +85,7 @@ void* accessElement (linkedlist* list, size_t index){
 void printList(linkedlist* list) {
     node* cur = list->head;
     while (cur != NULL) {
-        printf("%d -> ", *(int*)(cur->data)); // Assuming data is integer 
+        printf("%d -> ", *(int*)(cur->data)); // (int*) casting to integer and *(int*) accesses value stored at address (cur->data)
         cur = cur->next;
     }
     printf("NULL\n");
@@ -95,18 +95,17 @@ int main() {
     linkedlist list;
     initialize_linked_list(&list);
 
-    // Adding elements to the linked list
     int a = 5;
     int b = 10;
     int c = 15;
     int d = 20;
 
-    addElement(&list, &a);
+    addElement(&list, &a); // taking in addresses 
     addElement(&list, &b);
     addElement(&list, &c);
     addElement(&list, &d);
 
-    // Printing the initial list
+    //initial list
     printf("Initial List: ");
     printList(&list);
 
