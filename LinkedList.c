@@ -93,7 +93,7 @@ void printList(linkedlist* list) {
 
 int main() {
     linkedlist list;
-    initialize_linked_list(&list);
+    initialize_linked_list(&list); // assigns address of list to *list parameter- (which accesses value stored at address) 
 
     int a = 5;
     int b = 10;
